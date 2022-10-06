@@ -7,7 +7,7 @@ const LandingHero = () => {
   return (
     <>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12} md={6}>
           <Container>
             <Typography
               style={{ color: "#5a683f", fontWeight: "1000" }}
@@ -71,7 +71,7 @@ const LandingHero = () => {
             </Stack>
           </Container>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12} md={6}>
           <Box
             component="img"
             sx={{

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,13 +11,14 @@ import Menu from "@mui/material/Menu";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function Header() {
+  const matches = !useMediaQuery('(min-width:900px)');
   const navigate = useNavigate();
   const [auth, setAuth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorElMenu, setAnchorElMenu] = React.useState(null);
-  const [menuButtonDisplay, setMenuButtonDisplay] = React.useState(false);
 
   const menuItemsValue = [
     { name: "Home", link: "/" },
@@ -41,22 +42,13 @@ export default function Header() {
     setAnchorElMenu(null);
   };
 
-  useEffect(() => {
-    function handleWindowResize() {
-      if (window.innerWidth <= 768) setMenuButtonDisplay(true);
-      else setMenuButtonDisplay(false);
-    }
-    window.addEventListener("resize", handleWindowResize);
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
-
   return (
     <Box sx={{ flexGrow: 1, marginBottom: "100px" }}>
       <AppBar sx={{ color: "black", background: "#eeeae6" }}>
         <Toolbar>
-          <Box sx={{ display: menuButtonDisplay ? "block" : "none" }}>
+          <Box
+            sx={{ display: matches ? "inline" : "none", color: "black" }}
+          >
             <IconButton
               onClick={handleMenu}
               size="large"
@@ -81,7 +73,11 @@ export default function Header() {
               onClose={handleClose}
             >
               {menuItemsValue.map((values) => (
-                <Link to={values.link} key={values.name}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={values.link}
+                  key={values.name}
+                >
                   <MenuItem onClick={handleClose} sx={{ color: "black" }}>
                     {values.name}
                   </MenuItem>
@@ -98,10 +94,14 @@ export default function Header() {
           </IconButton>
 
           {menuItemsValue.map((values) => (
-            <Link to={values.link} key={values.name}>
+            <Link
+              style={{ textDecoration: "none" }}
+              to={values.link}
+              key={values.name}
+            >
               <MenuItem
                 sx={{
-                  display: menuButtonDisplay ? "none" : "inline",
+                  display: matches ? "none" : "inline",
                   color: "black",
                 }}
               >
