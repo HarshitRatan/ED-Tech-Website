@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
 import Grid from "@mui/material/Grid";
 import { Box, Typography, Button, Stack, Container } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const LandingHero = () => {
   const ref = useRef(null);
+  const navigate = useNavigate();
   return (
     <>
       <Grid container spacing={2}>
@@ -52,7 +54,7 @@ const LandingHero = () => {
                   },
                 }}
                 onClick={() => {
-                  ref.current?.scrollIntoView({ behavior: "smooth" });
+                  navigate("/explore");
                 }}
               >
                 Explore Courses

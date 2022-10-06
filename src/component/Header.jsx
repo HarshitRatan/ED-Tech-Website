@@ -119,12 +119,12 @@ export default function Header() {
               sx={{ width: "100%" }}
             >
               <Box>
-                <Link to={`/login`}>
+                <Link to={`/login`} style={{ textDecoration: "none" }}>
                   <Button sx={{ color: "black" }} color="inherit">
                     Login
                   </Button>
                 </Link>
-                <Link to={`/login`}>
+                <Link to={`/login`} style={{ textDecoration: "none" }}>
                   <Button
                     sx={{
                       marginLeft: "10px",
